@@ -5,6 +5,31 @@ let p2Score = 0;
 let expectedAnswer = null;
 let gameState = 'START'; // START, PLAYING, ENDED
 
+// Audio
+const AudioCtx = window.AudioContext || window.webkitAudioContext;
+let audioCtx;
+
+function initAudio() {
+    if (!audioCtx) {
+        audioCtx = new AudioCtx();
+    }
+}
+
+function playSuccessSound() {
+    if (!audioCtx) return;
+    const osc = audioCtx.createOscillator();
+    const gainNode = audioCtx.createGain();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(523.25, audioCtx.currentTime); // C5
+    osc.frequency.exponentialRampToValueAtTime(1046.50, audioCtx.currentTime + 0.1); // C6
+    gainNode.gain.setValueAtTime(0.1, audioCtx.currentTime);
+    gainNode.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.3);
+    osc.connect(gainNode);
+    gainNode.connect(audioCtx.destination);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.3);
+}
+
 // Input states
 let p1Input = "";
 let p2Input = "";
@@ -104,6 +129,11 @@ function animateButton(player, val) {
 }
 
 function startGame(mode) {
+    initAudio();
+    if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+    }
+
     if (screen.orientation && screen.orientation.lock) {
         screen.orientation.lock('landscape').catch(e => console.log("Orientation lock not supported or allowed here."));
     }
@@ -192,6 +222,9 @@ function generateQuestion() {
 }
 
 function timeOutPenalty() {
+    // Play positive sound for CPU
+    playSuccessSound();
+    
     p2Score++;
     document.getElementById('p1-side').classList.add('wrong-flash');
     setTimeout(() => document.getElementById('p1-side').classList.remove('wrong-flash'), 500);
@@ -236,6 +269,9 @@ function checkAnswer(player, answer) {
 
     if (isCorrect) {
         if (timerInterval) clearInterval(timerInterval);
+
+        // Play positive sound
+        playSuccessSound();
 
         // Correct
         if (player === '1') p1Score++;
