@@ -16,22 +16,14 @@
     </div>
 
     <div class="game-container">
-        <!-- Top Screen -->
-        <header class="top-screen glass-panel">
-            <h1 class="title">Math Tug-of-War</h1>
-            <div id="question-display" class="question-text">Press Start!</div>
-            <div id="timer-display" class="timer-text hidden">Time: 5s</div>
-            <div id="question-counter" class="counter-text">Question: 0/5</div>
-        </header>
-
         <!-- Main Battle Arena -->
         <main class="battle-arena">
             <!-- Player 1 Side -->
             <div class="player-side" id="p1-side">
-                <div class="cartoon-container bounce-anim">
+                <div class="player-header bounce-anim">
                     <div class="player-name p1-color">Player 1</div>
+                    <div class="score p1-color" id="p1-score">Score: 0</div>
                 </div>
-                <div class="score p1-color" id="p1-score">Score: 0</div>
                 <div class="calculator glass-panel p1-calc">
                     <div class="calc-display" id="p1-display"></div>
                     <div class="keypad" id="p1-keypad">
@@ -51,21 +43,29 @@
                 </div>
             </div>
 
-            <!-- Rope Area -->
+            <!-- Tug of War Area -->
             <div class="tug-of-war-container">
+                <!-- Top Screen -->
+                <header class="top-screen glass-panel">
+                    <div id="question-display" class="question-text">Press Start!</div>
+                    <div id="timer-display" class="timer-text hidden">Time: 5s</div>
+                    <div id="question-counter" class="counter-text">Question: 0/5</div>
+                </header>
+                
+                <!-- Rope Track -->
                 <div class="rope-track">
+                    <div class="center-line"></div>
                     <div class="rope"></div>
                     <div class="knot" id="rope-knot"></div>
                 </div>
-                <div class="center-line"></div>
             </div>
 
             <!-- Player 2 Side -->
             <div class="player-side" id="p2-side">
-                <div class="cartoon-container bounce-anim" style="animation-delay: 0.2s">
+                <div class="player-header bounce-anim" style="animation-delay: 0.2s">
                     <div class="player-name p2-color" id="p2-name">Player 2</div>
+                    <div class="score p2-color" id="p2-score">Score: 0</div>
                 </div>
-                <div class="score p2-color" id="p2-score">Score: 0</div>
                 <div class="calculator glass-panel p2-calc" id="p2-calc-container">
                     <div class="calc-display" id="p2-display"></div>
                     <div class="keypad" id="p2-keypad">
