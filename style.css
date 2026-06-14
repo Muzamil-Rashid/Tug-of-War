@@ -251,6 +251,24 @@ body {
     align-items: center;
 }
 
+.boy {
+    position: absolute;
+    font-size: 3rem;
+    top: 50%;
+    z-index: 3;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.5));
+}
+
+.left-boy {
+    left: -40px;
+    transform: translateY(-50%);
+}
+
+.right-boy {
+    right: -40px;
+    transform: translateY(-50%) scaleX(-1);
+}
+
 .rope {
     width: 100%;
     height: 12px;
@@ -450,12 +468,13 @@ body {
         overflow-y: auto;
     }
     .game-container {
-        height: 98vh;
-        gap: 5px;
+        height: auto;
+        gap: 15px;
+        margin-bottom: auto;
     }
     .top-screen {
         height: auto;
-        padding: 5px;
+        padding: 5px 15px;
     }
     .question-text {
         font-size: 1.8rem;
@@ -471,7 +490,7 @@ body {
     }
     .battle-arena {
         height: auto;
-        flex: 1;
+        align-items: center;
         gap: 10px;
     }
     .player-side {
