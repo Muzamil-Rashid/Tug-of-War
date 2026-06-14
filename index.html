@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Tug-of-War</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0f172a">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <div class="game-container">
+        <!-- Top Screen -->
+        <header class="top-screen glass-panel">
+            <h1 class="title">Math Tug-of-War</h1>
+            <div id="question-display" class="question-text">Press Start!</div>
+            <div id="timer-display" class="timer-text hidden">Time: 5s</div>
+            <div id="question-counter" class="counter-text">Question: 0/5</div>
+        </header>
+
+        <!-- Main Battle Arena -->
+        <main class="battle-arena">
+            <!-- Player 1 Side -->
+            <div class="player-side" id="p1-side">
+                <div class="cartoon-container bounce-anim">
+                    <div class="player-name p1-color">Player 1</div>
+                </div>
+                <div class="score p1-color" id="p1-score">Score: 0</div>
+                <div class="calculator glass-panel p1-calc">
+                    <div class="calc-display" id="p1-display"></div>
+                    <div class="keypad" id="p1-keypad">
+                        <button class="calc-btn" data-player="1" data-val="7">7</button>
+                        <button class="calc-btn" data-player="1" data-val="8">8</button>
+                        <button class="calc-btn" data-player="1" data-val="9">9</button>
+                        <button class="calc-btn" data-player="1" data-val="4">4</button>
+                        <button class="calc-btn" data-player="1" data-val="5">5</button>
+                        <button class="calc-btn" data-player="1" data-val="6">6</button>
+                        <button class="calc-btn" data-player="1" data-val="1">1</button>
+                        <button class="calc-btn" data-player="1" data-val="2">2</button>
+                        <button class="calc-btn" data-player="1" data-val="3">3</button>
+                        <button class="calc-btn clear-btn" data-player="1" data-val="clear">CLR</button>
+                        <button class="calc-btn" data-player="1" data-val="0">0</button>
+                        <button class="calc-btn enter-btn" data-player="1" data-val="enter">ENT</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rope Area -->
+            <div class="tug-of-war-container">
+                <div class="rope-track">
+                    <div class="rope"></div>
+                    <div class="knot" id="rope-knot"></div>
+                </div>
+                <div class="center-line"></div>
+            </div>
+
+            <!-- Player 2 Side -->
+            <div class="player-side" id="p2-side">
+                <div class="cartoon-container bounce-anim" style="animation-delay: 0.2s">
+                    <div class="player-name p2-color" id="p2-name">Player 2</div>
+                </div>
+                <div class="score p2-color" id="p2-score">Score: 0</div>
+                <div class="calculator glass-panel p2-calc" id="p2-calc-container">
+                    <div class="calc-display" id="p2-display"></div>
+                    <div class="keypad" id="p2-keypad">
+                        <button class="calc-btn" data-player="2" data-val="7">7</button>
+                        <button class="calc-btn" data-player="2" data-val="8">8</button>
+                        <button class="calc-btn" data-player="2" data-val="9">9</button>
+                        <button class="calc-btn" data-player="2" data-val="4">4</button>
+                        <button class="calc-btn" data-player="2" data-val="5">5</button>
+                        <button class="calc-btn" data-player="2" data-val="6">6</button>
+                        <button class="calc-btn" data-player="2" data-val="1">1</button>
+                        <button class="calc-btn" data-player="2" data-val="2">2</button>
+                        <button class="calc-btn" data-player="2" data-val="3">3</button>
+                        <button class="calc-btn clear-btn" data-player="2" data-val="clear">CLR</button>
+                        <button class="calc-btn" data-player="2" data-val="0">0</button>
+                        <button class="calc-btn enter-btn" data-player="2" data-val="enter">ENT</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Modals -->
+    <div id="overlay" class="overlay glass-panel">
+        <div id="start-modal" class="modal">
+            <h2>Select Game Mode</h2>
+            <p>Solve 5 questions! Correct answers pull the rope to your side.</p>
+            <div class="mode-buttons">
+                <button id="single-player-btn" class="action-btn">Single Player (5s Timer)</button>
+                <button id="two-player-btn" class="action-btn">2 Player</button>
+            </div>
+        </div>
+        <div id="winner-modal" class="modal hidden">
+            <h2 id="winner-text">Player X Wins!</h2>
+            <div id="final-scores" class="final-scores"></div>
+            <button id="restart-btn" class="action-btn">PLAY AGAIN</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js');
+        }
+    </script>
+</body>
+</html>
